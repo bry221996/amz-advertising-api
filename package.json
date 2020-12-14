@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/bry221996/amz-advertising-api/issues"
   },
-  "homepage": "https://github.com/bry221996/amz-advertising-api#readme"
+  "homepage": "https://github.com/bry221996/amz-advertising-api#readme",
+  "dependencies": {
+    "json-bigint": "^1.0.0",
+    "needle": "^2.5.2",
+    "set-interval-async": "^1.0.33",
+    "zlib": "^1.0.5"
+  }
 }
