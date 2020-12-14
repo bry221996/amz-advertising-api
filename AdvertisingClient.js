@@ -442,7 +442,7 @@ module.exports = class AdvertisingClient {
     ).body;
 
     if (response.error) {
-      throw resData.error;
+      throw response.error;
     }
 
     this.options.accessToken = response.access_token;
