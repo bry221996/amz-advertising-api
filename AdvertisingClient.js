@@ -83,6 +83,16 @@ module.exports = class AdvertisingClient {
       "PUT"
     );
   }
+  listPorfolios() {
+    return this.apiRequest(`v2/sp/portfolios${queryfy(data)}`, null, "GET");
+  }
+  listPorfoliosEx() {
+    return this.apiRequest(
+      `v2/sp/portfolios/extended${queryfy(data)}`,
+      null,
+      "GET"
+    );
+  }
   listProfiles() {
     return this.apiRequest(`v2/sp/profiles`, null, "GET");
   }
