@@ -524,6 +524,7 @@ module.exports = class AdvertisingClient {
 
   async apiRequest(path, data, method, retry = 1) {
     let url = `https://${this.endpoint}/${path}`;
+    console.log(url);
     let requestOptions = {
       accept: "*",
       headers: {
