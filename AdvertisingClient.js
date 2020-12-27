@@ -84,11 +84,11 @@ module.exports = class AdvertisingClient {
     );
   }
   listPorfolios(data) {
-    return this.apiRequest(`v2/sp/portfolios${queryfy(data)}`, null, "GET");
+    return this.apiRequest(`v2/portfolios${queryfy(data)}`, null, "GET");
   }
   listPorfoliosEx(data) {
     return this.apiRequest(
-      `v2/sp/portfolios/extended${queryfy(data)}`,
+      `v2/portfolios/extended${queryfy(data)}`,
       null,
       "GET"
     );
