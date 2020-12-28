@@ -83,12 +83,22 @@ module.exports = class AdvertisingClient {
       "PUT"
     );
   }
-  listPorfolios(data) {
+  listPortfolios(data) {
     return this.apiRequest(`v2/portfolios${queryfy(data)}`, null, "GET");
   }
-  listPorfoliosEx(data) {
+  listPortfoliosEx(data) {
     return this.apiRequest(
       `v2/portfolios/extended${queryfy(data)}`,
+      null,
+      "GET"
+    );
+  }
+  getPortfolio(portfolioId) {
+    return this.apiRequest(`v2/portfolios/${portfolioId}`, null, "GET");
+  }
+  getPortfolioEx(portfolioId) {
+    return this.apiRequest(
+      `v2/portfolios/extended/${portfolioId}`,
       null,
       "GET"
     );
