@@ -104,24 +104,24 @@ module.exports = class AdvertisingClient {
     );
   }
   listProfiles() {
-    return this.apiRequest(`v2/sp/profiles`, null, "GET");
+    return this.apiRequest(`v2/profiles`, null, "GET");
   }
   registerProfile(data) {
-    return this.apiRequest(`v2/sp/profiles/register`, data, `PUT`);
+    return this.apiRequest(`v2/profiles/register`, data, `PUT`);
   }
   registerProfileStatus(profileId) {
     return this.apiRequest(
-      `v2/sp/profiles/register/${profileId}/status`,
+      `v2/profiles/register/${profileId}/status`,
       null,
       "GET"
     );
   }
   getProfile(profileId) {
-    return this.apiRequest(`v2/sp/profiles/${profileId}`, null, "GET");
+    return this.apiRequest(`v2/profiles/${profileId}`, null, "GET");
   }
   updateProfiles(data) {
     parseBigIntFields(data);
-    return this.apiRequest(`v2/sp/profiles`, data, `PUT`);
+    return this.apiRequest(`v2/profiles`, data, `PUT`);
   }
   getCampaign(campaignId) {
     return this.apiRequest(`v2/sp/campaigns/${campaignId}`, null, "GET");
