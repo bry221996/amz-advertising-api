@@ -402,9 +402,9 @@ module.exports = class AdvertisingClient {
     }
   }
 
-  requestReport(campaignType, recordType, data) {
+  requestReport(recordType, data) {
     return this.apiRequest(
-      `v2/${campaignType}/${recordType}/report`,
+      `v2/sp/${recordType}/report`,
       data,
       `POST`
     );
