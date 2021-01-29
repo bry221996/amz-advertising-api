@@ -366,9 +366,9 @@ module.exports = class AdvertisingClient {
   bulkGetAsinKeywordSuggestions(data) {
     return this.apiRequest(`v2/sp/asins/suggested/keywords`, data, `POST`);
   }
-  requestSnapshot(campaignType, recordType, data) {
+  requestSnapshot(campaignType, recordType, data, apiVersion = "v2") {
     return this.apiRequest(
-      `v2/${campaignType}/${recordType}/snapshot`,
+      `${apiVersion}/${campaignType}/${recordType}/snapshot`,
       data,
       `POST`
     );
