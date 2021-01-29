@@ -366,15 +366,16 @@ module.exports = class AdvertisingClient {
   bulkGetAsinKeywordSuggestions(data) {
     return this.apiRequest(`v2/sp/asins/suggested/keywords`, data, `POST`);
   }
-  requestSnapshot(campaignType, recordType, data, apiVersion = "v2") {
+  requestSnapshot(campaignType, recordType, data) {
+    const mainEndpoint = campaignType != "sd" ? "v2" : "";
     return this.apiRequest(
-      `${apiVersion}/${campaignType}/${recordType}/snapshot`,
+      `${mainEndpoint}/${campaignType}/${recordType}/snapshot`,
       data,
       `POST`
     );
   }
 
-  async getSnapshot(campaignType, snapshotId, apiVersion = "v2") {
+  async getSnapshot(campaignType, snapshotId) {
     if (!snapshotId) {
       throw "No valid snapshotId";
     }
@@ -382,8 +383,10 @@ module.exports = class AdvertisingClient {
     let retry = 1;
 
     while (true) {
+      const mainEndpoint = campaignType != "sd" ? "v2" : "";
+
       let snapshotRequest = await this.apiRequest(
-        `${apiVersion}/${campaignType}/snapshots/${snapshotId}`,
+        `${mainEndpoint}/${campaignType}/snapshots/${snapshotId}`,
         {},
         "GET"
       );
