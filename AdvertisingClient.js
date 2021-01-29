@@ -374,7 +374,7 @@ module.exports = class AdvertisingClient {
     );
   }
 
-  async getSnapshot(campaignType, snapshotId) {
+  async getSnapshot(campaignType, snapshotId, apiVersion = "v2") {
     if (!snapshotId) {
       throw "No valid snapshotId";
     }
@@ -383,7 +383,7 @@ module.exports = class AdvertisingClient {
 
     while (true) {
       let snapshotRequest = await this.apiRequest(
-        `v2/${campaignType}/snapshots/${snapshotId}`,
+        `${apiVersion}/${campaignType}/snapshots/${snapshotId}`,
         null,
         "GET"
       );
