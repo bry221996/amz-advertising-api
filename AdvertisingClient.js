@@ -406,8 +406,10 @@ module.exports = class AdvertisingClient {
   }
 
   requestReport(campaignType, recordType, data) {
+    const mainEndpoint = campaignType != "sd" ? "v2" : "";
+
     return this.apiRequest(
-      `v2/${campaignType}/${recordType}/report`,
+      `${mainEndpoint}/${campaignType}/${recordType}/report`,
       data,
       `POST`
     );
@@ -533,6 +535,11 @@ module.exports = class AdvertisingClient {
         return unzipped;
       }
     } else {
+      if (response.headers["content-type"] == "application/octet-stream") {
+        var unzipped = zlib.gunzipSync(response.raw).toString();
+        return JSONbig.parse(unzipped);
+      }
+
       return response.body;
     }
   }
