@@ -384,7 +384,7 @@ module.exports = class AdvertisingClient {
     while (true) {
       let snapshotRequest = await this.apiRequest(
         `${apiVersion}/${campaignType}/snapshots/${snapshotId}`,
-        null,
+        {},
         "GET"
       );
 
@@ -473,7 +473,9 @@ module.exports = class AdvertisingClient {
   async download(location, auth, retry = 1) {
     let requestOptions = {
       accept: "*",
-      headers: {},
+      headers: {
+        "Amazon-Advertising-API-ClientId": this.options.clientId,
+      },
       followRedirect: false,
       compressed: false,
       json: false,
