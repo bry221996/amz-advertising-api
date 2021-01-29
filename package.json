@@ -1,6 +1,6 @@
 {
   "name": "amazon-ppc-api",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "This class helps you interfacing the Amazon Advertising API.",
   "main": "index.js",
   "scripts": {
