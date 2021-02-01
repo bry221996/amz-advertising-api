@@ -61,6 +61,7 @@ module.exports = class AdvertisingClient {
       options.clientSecret || process.env.AMAZON_CLIENT_SECRET;
     this.options.maxWaitTime = options.maxWaitTime || 1000 * 60 * 2;
     this.options.maxRetry = options.maxRetry || 10;
+    this.options.logging = options.logging || false;
 
     this.tokenUrl = Regions[options.region].tokenUrl;
 
@@ -548,7 +549,11 @@ module.exports = class AdvertisingClient {
 
   async apiRequest(path, data, method, retry = 1) {
     let url = `https://${this.endpoint}/${path}`;
-    console.log(url);
+
+    if (this.options.logging) {
+      console.log(url);
+    }
+
     let requestOptions = {
       accept: "*",
       headers: {
@@ -576,6 +581,10 @@ module.exports = class AdvertisingClient {
         requestOptions
       );
     } catch (error) {
+      if (this.options.logging) {
+        console.log(error);
+      }
+
       requestFailed = true;
     }
 
