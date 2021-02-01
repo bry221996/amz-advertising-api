@@ -431,7 +431,9 @@ module.exports = class AdvertisingClient {
 
       if (reportRequest.status === "SUCCESS") {
         var result = await this.download(reportRequest.location, true);
-        return JSONbig.parse(zlib.gunzipSync(result).toString());
+        return Array.isArray(result)
+          ? result
+          : JSONbig.parse(zlib.gunzipSync(result).toString());
       } else if (reportRequest.status === "FAILURE") {
         throw "FAILURE";
       } else if (reportRequest.status === "ERROR") {
