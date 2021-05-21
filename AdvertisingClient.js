@@ -125,7 +125,8 @@ module.exports = class AdvertisingClient {
     return this.apiRequest(`v2/profiles`, data, `PUT`);
   }
 
-  getCampaign(campaignType, campaignId, version = "", isExtended = false) {
+  getCampaign(campaignId, options = {}) {
+    const { campaignType, version = "", isExtended = false } = options;
     const resource = `${version}/${campaignType}/campaigns/`;
     const endpoint = `${resource}${isExtended ? "extended/" : ""}${campaignId}`;
 
