@@ -124,9 +124,14 @@ module.exports = class AdvertisingClient {
     parseBigIntFields(data);
     return this.apiRequest(`v2/profiles`, data, `PUT`);
   }
-  getCampaign(campaignId) {
-    return this.apiRequest(`v2/sp/campaigns/${campaignId}`, null, "GET");
+
+  getCampaign(baseEndpoint, campaignId, isExtended = false) {
+    const resource = isExtended ? "campaigns/extended/" : "campaigns/";
+    const endpoint = `${baseEndpoint}/${resource}${campaignId}`;
+
+    return this.apiRequest(endpoint, null, "GET");
   }
+
   getCampaignEx(campaignId) {
     return this.apiRequest(
       `v2/sp/campaigns/extended/${campaignId}`,
@@ -495,9 +500,8 @@ module.exports = class AdvertisingClient {
     }
 
     if (this.options.profileId) {
-      requestOptions.headers[
-        "Amazon-Advertising-API-Scope"
-      ] = this.options.profileId;
+      requestOptions.headers["Amazon-Advertising-API-Scope"] =
+        this.options.profileId;
     }
 
     let response;
@@ -565,9 +569,8 @@ module.exports = class AdvertisingClient {
     };
 
     if (this.options.profileId) {
-      requestOptions.headers[
-        "Amazon-Advertising-API-Scope"
-      ] = this.options.profileId;
+      requestOptions.headers["Amazon-Advertising-API-Scope"] =
+        this.options.profileId;
     }
 
     let response;
