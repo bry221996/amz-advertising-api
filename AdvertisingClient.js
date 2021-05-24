@@ -161,9 +161,15 @@ module.exports = class AdvertisingClient {
       "GET"
     );
   }
-  getAdGroup(adGroupId) {
-    return this.apiRequest(`v2/sp/adGroups/${adGroupId}`, null, "GET");
+
+  getAdGroup(adGroupId, options = {}) {
+    const { campaignType, version = "", isExtended = false } = options;
+    const resource = `${version}/${campaignType}/adGroups/`;
+    const endpoint = `${resource}${isExtended ? "extended/" : ""}${adGroupId}`;
+
+    return this.apiRequest(endpoint, null, "GET");
   }
+
   getAdGroupEx(adGroupId) {
     return this.apiRequest(`v2/sp/adGroups/extended/${adGroupId}`, null, "GET");
   }
