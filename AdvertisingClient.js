@@ -592,6 +592,10 @@ module.exports = class AdvertisingClient {
         JSONbig.stringify(data),
         requestOptions
       );
+
+      if (this.options.logging) {
+        console.log(`Response: ${response}`);
+      }
     } catch (error) {
       if (this.options.logging) {
         console.log(`Error on ${url}. ${error}`);
