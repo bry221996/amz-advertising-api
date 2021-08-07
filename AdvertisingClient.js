@@ -579,23 +579,16 @@ module.exports = class AdvertisingClient {
     let response;
     let requestFailed;
 
-    if (this.options.logging) {
-      console.log(`${method} ${url}`);
-      console.log("Request params: ", data);
-      console.log("Request options: ", requestOptions);
-    }
-
     try {
-      response = await needle(
-        method,
-        url,
-        JSONbig.stringify(data),
-        requestOptions
-      );
+      let payload = data ? JSONbig.stringify(data) : data;
 
       if (this.options.logging) {
-        console.log(`Response: ${response.body}`);
+        console.log(`${method} ${url}`);
+        console.log("Request params: ", payload);
+        console.log("Request options: ", requestOptions);
       }
+
+      response = await needle(method, url, payload, requestOptions);
     } catch (error) {
       requestFailed = true;
     }
@@ -604,7 +597,8 @@ module.exports = class AdvertisingClient {
       requestFailed ||
       response.statusCode == "429" ||
       response.statusCode == "500" ||
-      response.statusCode == "401"
+      response.statusCode == "401" ||
+      response.statusCode == "400"
     ) {
       if (this.options.logging) {
         console.log(`Error on ${url}.`);
