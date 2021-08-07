@@ -379,7 +379,7 @@ module.exports = class AdvertisingClient {
   bulkGetAsinKeywordSuggestions(data) {
     return this.apiRequest(`v2/sp/asins/suggested/keywords`, data, `POST`);
   }
-  requestSnapshot(campaignType, recordType, data) {
+  requestSnapshot(campaignType, recordType, data = {}) {
     const mainEndpoint = campaignType != "sd" ? "v2" : "";
     return this.apiRequest(
       `${mainEndpoint}/${campaignType}/${recordType}/snapshot`,
@@ -580,7 +580,7 @@ module.exports = class AdvertisingClient {
     let requestFailed;
 
     try {
-      if (typeof data === "object" && data !== null) {
+      if (typeof data === "object" && data !== null && method != "POST") {
         data = Object.keys(data).length ? data : null;
       }
 
@@ -594,8 +594,10 @@ module.exports = class AdvertisingClient {
 
       response = await needle(method, url, payload, requestOptions);
 
-      if (this.options.logging)
+      if (this.options.logging) {
         console.log("Response status: ", response.statusCode);
+        console.log("Response body: ", response.bodys);
+      }
     } catch (error) {
       requestFailed = true;
     }
