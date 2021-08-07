@@ -594,13 +594,9 @@ module.exports = class AdvertisingClient {
       );
 
       if (this.options.logging) {
-        console.log(`Response: ${response}`);
+        console.log(`Response: ${response.body}`);
       }
     } catch (error) {
-      if (this.options.logging) {
-        console.log(`Error on ${url}. ${error}`);
-      }
-
       requestFailed = true;
     }
 
@@ -610,6 +606,10 @@ module.exports = class AdvertisingClient {
       response.statusCode == "500" ||
       response.statusCode == "401"
     ) {
+      if (this.options.logging) {
+        console.log(`Error on ${url}.`);
+      }
+
       if (retry >= this.options.maxRetry)
         throw new Error("Maximum retry count reached.");
 
