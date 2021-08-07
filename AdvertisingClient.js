@@ -561,10 +561,6 @@ module.exports = class AdvertisingClient {
   async apiRequest(path, data, method, retry = 1) {
     let url = `https://${this.endpoint}/${path}`;
 
-    if (this.options.logging) {
-      console.log(url);
-    }
-
     let requestOptions = {
       accept: "*",
       headers: {
@@ -583,6 +579,12 @@ module.exports = class AdvertisingClient {
     let response;
     let requestFailed;
 
+    if (this.options.logging) {
+      console.log(`${method} ${url}`);
+      console.log("Request params: ", data);
+      console.log("Request options: ", requestOptions);
+    }
+
     try {
       response = await needle(
         method,
@@ -592,7 +594,7 @@ module.exports = class AdvertisingClient {
       );
     } catch (error) {
       if (this.options.logging) {
-        console.log(error);
+        console.log(`Error on ${url}. ${error}`);
       }
 
       requestFailed = true;
