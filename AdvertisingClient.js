@@ -580,6 +580,10 @@ module.exports = class AdvertisingClient {
     let requestFailed;
 
     try {
+      if (typeof data === "object" && data !== null) {
+        data = Object.keys(data).length ? data : null;
+      }
+
       let payload = data ? JSONbig.stringify(data) : data;
 
       if (this.options.logging) {
@@ -589,6 +593,9 @@ module.exports = class AdvertisingClient {
       }
 
       response = await needle(method, url, payload, requestOptions);
+
+      if (this.options.logging)
+        console.log("Response status: ", response.statusCode);
     } catch (error) {
       requestFailed = true;
     }
