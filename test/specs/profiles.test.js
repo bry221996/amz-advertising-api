@@ -18,4 +18,15 @@ describe("Profiles", () => {
       expect(profile).toHaveProperty("accountInfo");
     });
   });
+
+  test("It should get profile", async () => {
+    const profile = await this.client.getProfile(global.__PROFILE_ID__);
+
+    expect(profile).toHaveProperty("profileId");
+    expect(profile).toHaveProperty("countryCode");
+    expect(profile).toHaveProperty("currencyCode");
+    expect(profile).toHaveProperty("timezone");
+    expect(profile).toHaveProperty("dailyBudget");
+    expect(profile).toHaveProperty("accountInfo");
+  });
 });
