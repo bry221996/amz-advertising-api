@@ -1,3 +1,4 @@
+const { sample } = require("lodash");
 const AdvertisingClient = require("../../lib/AdvertisingClient");
 
 beforeAll(async () => {
@@ -9,14 +10,13 @@ beforeAll(async () => {
 describe("Profiles", () => {
   test("It should list profiles", async () => {
     const profiles = await this.client.listProfiles();
+    const profile = sample(profiles);
 
-    profiles.forEach((profile) => {
-      expect(profile).toHaveProperty("profileId");
-      expect(profile).toHaveProperty("countryCode");
-      expect(profile).toHaveProperty("currencyCode");
-      expect(profile).toHaveProperty("timezone");
-      expect(profile).toHaveProperty("accountInfo");
-    });
+    expect(profile).toHaveProperty("profileId");
+    expect(profile).toHaveProperty("countryCode");
+    expect(profile).toHaveProperty("currencyCode");
+    expect(profile).toHaveProperty("timezone");
+    expect(profile).toHaveProperty("accountInfo");
   });
 
   test("It should get profile", async () => {
