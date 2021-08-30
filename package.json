@@ -4,7 +4,7 @@
   "description": "This class helps you interfacing the Amazon Advertising API.",
   "main": "index.js",
   "scripts": {
-    "test": "jest --config=./test/jest.config.js"
+    "test": "jest --config=./test/jest.config.js --testTimeout=20000"
   },
   "repository": {
     "type": "git",
