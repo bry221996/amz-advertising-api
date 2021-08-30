@@ -102,22 +102,20 @@ await client.getProfile("1234567890");
 ```
 
 #### listPortfolios
-> Retrieves a single profile by Id.
+> List Portfolios
 
 ```Javascript
-await client.getProfile("1234567890");
+await client.listPortfolios(filter: {}, extended: false);
 ```
 >
 ```JSON
-{
-  "profileId": 1234567890,
-  "countryCode": "US",
-  "currencyCode": "USD",
-  "dailyBudget": 3.99,
-  "timezone": "America/Los_Angeles",
-  "accountInfo": {
-    "marketplaceStringId": "ABC123",
-    "sellerStringId": "DEF456"
+[
+  {
+    "portfolioId": 36942820984096,
+    "name": "NB:Sliding Door Lock (SDL)",
+    "budget": { },
+    "inBudget": true,
+    "state": "enabled"
   }
-}
+]
 ```
