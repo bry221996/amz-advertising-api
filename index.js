@@ -1,7 +1,7 @@
 /**
  * Module dependencies.
  */
-var AdvertisingClient = require("./lib/AdvertisingClient");
+var AdvertisingClient = require('./lib/AdvertisingClient');
 
 /**
  * Expose `Strategy` directly from package.
