@@ -61,4 +61,22 @@ describe('Campaigns', () => {
 
     expect(campaign).toHaveStructure(spCampaignExStructure);
   });
+
+  test('It should get specific brand product campaign details', async () => {
+    const campaign = await this.client.getCampaign('sponsoredBrands', global.__SB_CAMPAIGN_ID__);
+
+    expect(campaign).toHaveStructure(sbCampaignStructure);
+  });
+
+  test('It should get specific sponsored product campaign details', async () => {
+    const campaign = await this.client.getCampaign('sponsoredDisplay', global.__SD_CAMPAIGN_ID__);
+
+    expect(campaign).toHaveStructure(sdCampaignStructure);
+  });
+
+  test('It should get specific sponsored product campaign extended details', async () => {
+    const campaign = await this.client.getCampaign('sponsoredDisplay', global.__SD_CAMPAIGN_ID__, true);
+
+    expect(campaign).toHaveStructure(sdCampaignExStructure);
+  });
 });
