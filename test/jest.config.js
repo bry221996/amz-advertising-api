@@ -4,6 +4,7 @@ const config = {
   verbose: true,
   globals: {
     __PROFILE_ID__: process.env.PROFILE_ID,
+    __PORTFOLIO_ID__: process.env.PORTFOLIO_ID,
     __OPTIONS__: {
       clientId: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
@@ -11,6 +12,8 @@ const config = {
       refreshToken: process.env.REFRESH_TOKEN,
       maxRetry: 2,
       maxWaitTime: 60000,
+      profileId: process.env.PROFILE_ID,
+      // logging: true,
     },
   },
 };
