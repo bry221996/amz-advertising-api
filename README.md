@@ -56,6 +56,7 @@ client.options.profileId = "1234567890";
     * [getProfile](#getprofile)
 * Porfolios
     * [listPortfolios](#listPortfolios)
+    * [getPortfolio](#getPortfolio)
 
 
 #### listProfiles
@@ -102,20 +103,43 @@ await client.getProfile("1234567890");
 ```
 
 #### listPortfolios
-> List Portfolios
+> listPortfolios(filter: {}, extended: false). 
+
+> Accepts first argument as filter, and the second argument to list for extended details or not.
 
 ```Javascript
-await client.listPortfolios(filter: {}, extended: false);
+await client.listPortfolios();
 ```
 >
 ```JSON
 [
   {
-    "portfolioId": 36942820984096,
-    "name": "NB:Sliding Door Lock (SDL)",
+    "portfolioId": 1234567890,
+    "name": "Portfolio Name",
     "budget": { },
     "inBudget": true,
     "state": "enabled"
   }
 ]
+```
+
+#### getPortfolio
+> getPortfolio(portfolioId, extended: false). 
+
+> Accepts first argument as the portfolioId, and the second argument for extended details or not.
+
+```Javascript
+await client.getPortfolio(portfolioId);
+```
+>
+```JSON
+{
+  "portfolioId": 1234567890,
+  "name": "Portfolio Name",
+  "budget": { },
+  "inBudget": true,
+  "state": "enabled",
+  "creationDate": 202-0101,
+  "lastUpdatedDate": 20210101
+}
 ```
