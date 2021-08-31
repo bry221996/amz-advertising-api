@@ -59,8 +59,10 @@ client.options.profileId = "1234567890";
   - [getCampaign](docs/sponsoredProducts/campaigns.md#get-campaign)
 - Sponsored Brands
   - [listCampaigns](docs/sponsoredBrands/campaigns.md#list-campaigns)
+  - [getCampaign](docs/sponsoredBrands/campaigns.md#get-campaign)
 - Sponsored Display
   - [listCampaigns](docs/sponsoredDisplay/campaigns.md#list-campaigns)
+  - [getCampaign](docs/sponsoredBrands/campaigns.md#get-campaign)
 
 #### List Profiles
 
