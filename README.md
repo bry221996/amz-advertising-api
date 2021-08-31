@@ -41,18 +41,20 @@ client.options.profileId = "1234567890";
 
 > Once you've set the profile Id you are ready to start making API calls.
 
-## Example API Calls
+## API Calls
 
 * Profiles
-    * [listProfiles](#listProfiles)
-    * [getProfile](#getprofile)
+    * [listProfiles](#list-profiles)
+    * [getProfile](#get-profile)
 * Porfolios
-    * [listPortfolios](#listPortfolios)
-    * [getPortfolio](#getPortfolio)
+    * [listPortfolios](#list-Portfolios)
+    * [getPortfolio](#get-Portfolio)
 * Sponsored Products
     * [listCampaigns](docs/sponsoredProducts/campaigns.md) 
 * Sponsored Brands
+    * [listCampaigns](docs/sponsoredBrands/campaigns.md) 
 * Sponsored Display
+    * [listCampaigns](docs/sponsoredDisplay/campaigns.md) 
 
 
 #### List Profiles
