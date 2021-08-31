@@ -13,6 +13,8 @@ const config = {
     __SD_AD_GROUP_ID__: process.env.SD_AD_GROUP_ID,
     __SP_KEYWORD_ID__: process.env.SP_KEYWORD_ID,
     __SB_KEYWORD_ID__: process.env.SB_KEYWORD_ID,
+    __SP_NEG_KEYWORD_ID__: process.env.SP_NEG_KEYWORD_ID,
+    __SB_NEG_KEYWORD_ID__: process.env.SB_NEG_KEYWORD_ID,
     __OPTIONS__: {
       clientId: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
@@ -21,6 +23,7 @@ const config = {
       maxRetry: 2,
       maxWaitTime: 60000,
       profileId: process.env.PROFILE_ID,
+      // logging: true,
     },
   },
   setupFilesAfterEnv: ['./jest.setup.js'],
