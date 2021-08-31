@@ -6,6 +6,8 @@ const config = {
     __PROFILE_ID__: process.env.PROFILE_ID,
     __PORTFOLIO_ID__: process.env.PORTFOLIO_ID,
     __SP_CAMPAIGN_ID__: process.env.SP_CAMPAIGN_ID,
+    __SB_CAMPAIGN_ID__: process.env.SB_CAMPAIGN_ID,
+    __SD_CAMPAIGN_ID__: process.env.SD_CAMPAIGN_ID,
     __OPTIONS__: {
       clientId: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
