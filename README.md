@@ -1,23 +1,17 @@
-## Synopsis
 
-Advertising API NodeJS client library.
+# Advertising API NodeJS client library.
 
 ## Docs
 
-[API Reference](https://advertising.amazon.com/API/docs)<br/>
-[Access Request](https://advertising.amazon.com/API)<br/>
-[Getting Started](https://advertising.amazon.com/API/docs/v2/guides/get_started)
+[Amazon Advertising Docs](https://advertising.amazon.com/API/docs)
 
-## Quick Start
-#### Instantiate the client
-> You can pass in `profileId` later. You can get all available profiles with `listProfiles`.
-> After you instantiate the client you have to call init().
-
+## Guide
+#### Initiate the client
 ```Javascript
 
 let AdvertisingClient = require('amz-advertising-api');
 
-let config = {
+let client = new AdvertisingClient({
     clientId: "CLIENT_ID",
     clientSecret: "CLIENT_SECRET",
     accessToken: "ACCESS_TOKEN",
@@ -25,9 +19,7 @@ let config = {
     profileId: "PROFILE_ID",
     sandbox: false,
     region: 'eu'
-}
-
-let client = new AdvertisingClient(config);
+});
 
 await client.init();
 ```
@@ -57,9 +49,13 @@ client.options.profileId = "1234567890";
 * Porfolios
     * [listPortfolios](#listPortfolios)
     * [getPortfolio](#getPortfolio)
+* Sponsored Products
+    * [listCampaigns](#list-sponsored-product-campaigns) 
+* Sponsored Brands
+* Sponsored Display
 
 
-#### listProfiles
+#### List Profiles
 > List Profiles
 ```Javascript
 let profiles = await client.listProfiles();
@@ -81,7 +77,7 @@ let profiles = await client.listProfiles();
 ]
 ```
 
-#### getProfile
+#### Get Profile
 > Retrieves a single profile by Id.
 
 ```Javascript
@@ -102,7 +98,7 @@ await client.getProfile("1234567890");
 }
 ```
 
-#### listPortfolios
+#### List Portfolios
 > listPortfolios(filter: {}, extended: false). 
 
 > Accepts first argument as filter, and the second argument to list for extended details or not.
@@ -123,7 +119,7 @@ await client.listPortfolios();
 ]
 ```
 
-#### getPortfolio
+#### Get Portfolio
 > getPortfolio(portfolioId, extended: false). 
 
 > Accepts first argument as the portfolioId, and the second argument for extended details or not.
@@ -142,4 +138,29 @@ await client.getPortfolio(portfolioId);
   "creationDate": 202-0101,
   "lastUpdatedDate": 20210101
 }
+```
+
+#### List Sponsored Product Campaigns
+> listCampaigns(campaignType, data = {}, extended = false)
+
+> Accepts campaignType, filter and extended
+
+```Javascript
+await client.listCampaigns('sponsoredProducts');
+```
+>
+```JSON
+[
+  {
+    "campaignId": 1234567890,
+    "name": "Campaign Name",
+    "campaignType": "sponsoredProducts",
+    "targetingType": "auto",
+    "premiumBidAdjustment": true,
+    "state": "enabled",
+    "dailyBudget": 1,
+    "startDate": "20200101",
+    "bidding": {}
+  }
+]
 ```
