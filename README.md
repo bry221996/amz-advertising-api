@@ -50,7 +50,7 @@ client.options.profileId = "1234567890";
     * [listPortfolios](#listPortfolios)
     * [getPortfolio](#getPortfolio)
 * Sponsored Products
-    * [listCampaigns](#list-sponsored-product-campaigns) 
+    * [listCampaigns](docs/sponsoredProducts/campaigns.md) 
 * Sponsored Brands
 * Sponsored Display
 
@@ -138,29 +138,4 @@ await client.getPortfolio(portfolioId);
   "creationDate": 202-0101,
   "lastUpdatedDate": 20210101
 }
-```
-
-#### List Sponsored Product Campaigns
-> listCampaigns(campaignType, data = {}, extended = false)
-
-> Accepts campaignType, filter and extended
-
-```Javascript
-await client.listCampaigns('sponsoredProducts');
-```
->
-```JSON
-[
-  {
-    "campaignId": 1234567890,
-    "name": "Campaign Name",
-    "campaignType": "sponsoredProducts",
-    "targetingType": "auto",
-    "premiumBidAdjustment": true,
-    "state": "enabled",
-    "dailyBudget": 1,
-    "startDate": "20200101",
-    "bidding": {}
-  }
-]
 ```
