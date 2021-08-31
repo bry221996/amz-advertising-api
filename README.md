@@ -1,4 +1,3 @@
-
 # Advertising API NodeJS client library.
 
 ## Docs
@@ -6,7 +5,9 @@
 [Amazon Advertising Docs](https://advertising.amazon.com/API/docs)
 
 ## Guide
+
 #### Initiate the client
+
 ```Javascript
 
 let AdvertisingClient = require('amz-advertising-api');
@@ -23,10 +24,13 @@ let client = new AdvertisingClient({
 
 await client.init();
 ```
+
 #### Refresh access token
+
 > The refresh token gets automaticly refreshed every 2 minutes.
 
 >
+
 ```JSON
 {
   "access_token": "Atza|IQEBLjAsAhRmHjNgHpi0U-Dme37rR6CuUpSR…",
@@ -35,6 +39,7 @@ await client.init();
 ```
 
 #### Set profile Id
+
 ```Javascript
 client.options.profileId = "1234567890";
 ```
@@ -43,26 +48,30 @@ client.options.profileId = "1234567890";
 
 ## API Calls
 
-* Profiles
-    * [listProfiles](#list-profiles)
-    * [getProfile](#get-profile)
-* Porfolios
-    * [listPortfolios](#list-Portfolios)
-    * [getPortfolio](#get-Portfolio)
-* Sponsored Products
-    * [listCampaigns](docs/sponsoredProducts/campaigns.md) 
-* Sponsored Brands
-    * [listCampaigns](docs/sponsoredBrands/campaigns.md) 
-* Sponsored Display
-    * [listCampaigns](docs/sponsoredDisplay/campaigns.md) 
-
+- Profiles
+  - [listProfiles](#list-profiles)
+  - [getProfile](#get-profile)
+- Porfolios
+  - [listPortfolios](#list-Portfolios)
+  - [getPortfolio](#get-Portfolio)
+- Sponsored Products
+  - [listCampaigns](docs/sponsoredProducts/campaigns.md#list-campaigns)
+  - [getCampaign](docs/sponsoredProducts/campaigns.md#get-campaign)
+- Sponsored Brands
+  - [listCampaigns](docs/sponsoredBrands/campaigns.md#list-campaigns)
+- Sponsored Display
+  - [listCampaigns](docs/sponsoredDisplay/campaigns.md#list-campaigns)
 
 #### List Profiles
+
 > List Profiles
+
 ```Javascript
 let profiles = await client.listProfiles();
 ```
+
 >
+
 ```JSON
 [
   {
@@ -80,12 +89,15 @@ let profiles = await client.listProfiles();
 ```
 
 #### Get Profile
+
 > Retrieves a single profile by Id.
 
 ```Javascript
 await client.getProfile("1234567890");
 ```
+
 >
+
 ```JSON
 {
   "profileId": 1234567890,
@@ -101,14 +113,17 @@ await client.getProfile("1234567890");
 ```
 
 #### List Portfolios
-> listPortfolios(filter: {}, extended: false). 
+
+> listPortfolios(filter: {}, extended: false).
 
 > Accepts first argument as filter, and the second argument to list for extended details or not.
 
 ```Javascript
 await client.listPortfolios();
 ```
+
 >
+
 ```JSON
 [
   {
@@ -122,14 +137,17 @@ await client.listPortfolios();
 ```
 
 #### Get Portfolio
-> getPortfolio(portfolioId, extended: false). 
+
+> getPortfolio(portfolioId, extended: false).
 
 > Accepts first argument as the portfolioId, and the second argument for extended details or not.
 
 ```Javascript
 await client.getPortfolio(portfolioId);
 ```
+
 >
+
 ```JSON
 {
   "portfolioId": 1234567890,
