@@ -24,13 +24,6 @@ describe('Negative Keywords', () => {
     expect(keywords[0]).toHaveStructure([...keywordStructure, ...extendedStructure]);
   });
 
-  test('It should list sponsored brands negative keywords', async () => {
-    const keywords = await this.client.listNegativeKeywords('sponsoredBrands', { count: 1 });
-    if (!keywords.length) return;
-
-    expect(keywords[0]).toHaveStructure(keywordStructure);
-  });
-
   test('It should get specific product negative keyword details', async () => {
     const keyword = await this.client.getNegativeKeyword('sponsoredProducts', global.__SP_NEG_KEYWORD_ID__);
 
@@ -41,11 +34,5 @@ describe('Negative Keywords', () => {
     const keyword = await this.client.getNegativeKeyword('sponsoredProducts', global.__SP_NEG_KEYWORD_ID__, true);
 
     expect(keyword).toHaveStructure([...keywordStructure, ...extendedStructure]);
-  });
-
-  test('It should get specific sponsored brand negative keyword details', async () => {
-    const keyword = await this.client.getNegativeKeyword('sponsoredBrands', global.__SB_NEG_KEYWORD_ID__);
-
-    expect(keyword).toHaveStructure(keywordStructure);
   });
 });

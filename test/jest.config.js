@@ -24,6 +24,7 @@ const config = {
       maxRetry: 2,
       maxWaitTime: 60000,
       profileId: process.env.PROFILE_ID,
+      sandbox: true,
       // logging: true,
     },
   },
