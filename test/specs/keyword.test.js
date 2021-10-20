@@ -24,13 +24,6 @@ describe('Keywords', () => {
     expect(keywords[0]).toHaveStructure([...keywordStructure, ...extendedStructure]);
   });
 
-  test('It should list sponsored brands keywords', async () => {
-    const keywords = await this.client.listKeywords('sponsoredBrands', { count: 1 });
-    if (!keywords.length) return;
-
-    expect(keywords[0]).toHaveStructure(keywordStructure);
-  });
-
   test('It should get specific product keyword details', async () => {
     const keyword = await this.client.getKeyword('sponsoredProducts', global.__SP_KEYWORD_ID__);
 
