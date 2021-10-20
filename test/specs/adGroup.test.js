@@ -79,4 +79,12 @@ describe('Ad Groups', () => {
 
     expect(adGroup).toHaveStructure(sdAdGroupExStructure);
   });
+
+  test('It should update ad group details', async () => {
+    const response = await this.client.updateAdGroups('sponsoredProducts', [
+      { adGroupId: global.__SP_AD_GROUP_ID__, name: 'updated name', state: 'enabled', defaultBid: 20 },
+    ]);
+
+    expect(response[0]).toHaveStructure(['code', 'adGroupId']);
+  });
 });
