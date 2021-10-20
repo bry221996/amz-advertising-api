@@ -3,11 +3,6 @@ const AdvertisingClient = require('../../lib/AdvertisingClient');
 const spAdGroupStructure = ['adGroupId', 'name', 'campaignId', 'defaultBid', 'state'];
 const spAdGroupExStructure = [...spAdGroupStructure, 'servingStatus', 'creationDate', 'lastUpdatedDate'];
 
-const sbAdGroupStructure = ['adGroupId', 'name', 'campaignId', 'bid'];
-
-const sdAdGroupStructure = ['adGroupId', 'name', 'campaignId', 'defaultBid', 'state', 'bidOptimization', 'tactic'];
-const sdAdGroupExStructure = [...sdAdGroupStructure, 'servingStatus', 'creationDate', 'lastUpdatedDate'];
-
 beforeAll(async () => {
   this.client = new AdvertisingClient(global.__OPTIONS__);
 
@@ -29,27 +24,6 @@ describe('Ad Groups', () => {
     expect(adGroups[0]).toHaveStructure(spAdGroupExStructure);
   });
 
-  test('It should list sponsored brands ad groups', async () => {
-    const adGroups = await this.client.listAdGroups('sponsoredBrands', { count: 1 });
-    if (!adGroups.length) return;
-
-    expect(adGroups[0]).toHaveStructure(sbAdGroupStructure);
-  });
-
-  test('It should list sponsored display ad groups', async () => {
-    const adGroups = await this.client.listAdGroups('sponsoredDisplay', { count: 1 });
-    if (!adGroups.length) return;
-
-    expect(adGroups[0]).toHaveStructure(sdAdGroupStructure);
-  });
-
-  test('It should list sponsored display ad groups with extended details', async () => {
-    const adGroups = await this.client.listAdGroups('sponsoredDisplay', { count: 1 }, true);
-    if (!adGroups.length) return;
-
-    expect(adGroups[0]).toHaveStructure(sdAdGroupExStructure);
-  });
-
   test('It should get specific sponsored product ad group details', async () => {
     const adGroup = await this.client.getAdGroup('sponsoredProducts', global.__SP_AD_GROUP_ID__);
 
@@ -62,25 +36,7 @@ describe('Ad Groups', () => {
     expect(adGroup).toHaveStructure(spAdGroupExStructure);
   });
 
-  test('It should get specific brand ad group details', async () => {
-    const adGroup = await this.client.getAdGroup('sponsoredBrands', global.__SB_AD_GROUP_ID__);
-
-    expect(adGroup).toHaveStructure(sbAdGroupStructure);
-  });
-
-  test('It should get specific sponsored display ad group details', async () => {
-    const adGroup = await this.client.getAdGroup('sponsoredDisplay', global.__SD_AD_GROUP_ID__);
-
-    expect(adGroup).toHaveStructure(sdAdGroupStructure);
-  });
-
-  test('It should get specific sponsored display ad group extended details', async () => {
-    const adGroup = await this.client.getAdGroup('sponsoredDisplay', global.__SD_AD_GROUP_ID__, true);
-
-    expect(adGroup).toHaveStructure(sdAdGroupExStructure);
-  });
-
-  test('It should update ad group details', async () => {
+  test('It should update sponsored product ad group details', async () => {
     const response = await this.client.updateAdGroups('sponsoredProducts', [
       { adGroupId: global.__SP_AD_GROUP_ID__, name: 'updated name', state: 'enabled', defaultBid: 20 },
     ]);
