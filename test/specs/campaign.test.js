@@ -79,4 +79,10 @@ describe('Campaigns', () => {
 
     expect(campaign).toHaveStructure(sdCampaignExStructure);
   });
+
+  test('It should update details', async () => {
+    const response = await this.client.updateCampaigns('sponsoredProducts', [{ campaignId: global.__SP_CAMPAIGN_ID__, state: 'enabled', dailyBudget: 20 }]);
+
+    expect(response[0]).toHaveStructure(['code', 'campaignId']);
+  });
 });
