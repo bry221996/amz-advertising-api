@@ -48,4 +48,10 @@ describe('Keywords', () => {
 
     expect(keyword).toHaveStructure(keywordStructure);
   });
+
+  test('It should update keyword details', async () => {
+    const response = await this.client.updateKeywords('sponsoredProducts', [{ keywordId: global.__SP_KEYWORD_ID__, state: 'enabled', bid: 20 }]);
+
+    expect(response[0]).toHaveStructure(['code', 'keywordId']);
+  });
 });
