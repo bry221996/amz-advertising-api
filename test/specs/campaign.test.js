@@ -36,8 +36,28 @@ describe('Campaigns', () => {
     expect(campaign).toHaveStructure(spCampaignExStructure);
   });
 
-  test('It should update sponsored product campaign details', async () => {
+  test('It should create sponsored product campaign', async () => {
     const response = await this.client.updateCampaigns('sponsoredProducts', [{ campaignId: global.__SP_CAMPAIGN_ID__, state: 'paused', dailyBudget: 20 }]);
+
+    expect(response[0]).toHaveStructure(['code', 'campaignId']);
+  });
+
+  test('It should update sponsored product campaign details', async () => {
+    const response = await this.client.createCampaigns('sponsoredProducts', [
+      {
+        name: 'campaign name',
+        tags: {
+          PONumber: 'examplePONumber',
+          accountManager: 'exampleAccountManager',
+        },
+        campaignType: 'sponsoredProducts',
+        targetingType: 'manual',
+        state: 'enabled',
+        dailyBudget: 10,
+        startDate: '20220101',
+        premiumBidAdjustment: true,
+      },
+    ]);
 
     expect(response[0]).toHaveStructure(['code', 'campaignId']);
   });
