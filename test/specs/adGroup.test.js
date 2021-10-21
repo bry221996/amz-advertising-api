@@ -43,4 +43,17 @@ describe('Ad Groups', () => {
 
     expect(response[0]).toHaveStructure(['code', 'adGroupId']);
   });
+
+  test('It should create sponsored product ad group', async () => {
+    const response = await this.client.createAdGroups('sponsoredProducts', [
+      {
+        name: 'Ad group name',
+        campaignId: global.__SP_CAMPAIGN_ID__,
+        defaultBid: 0.5,
+        state: 'enabled',
+      },
+    ]);
+
+    expect(response[0]).toHaveStructure(['code', 'adGroupId']);
+  });
 });
