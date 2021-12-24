@@ -24,15 +24,29 @@ describe('Negative Keywords', () => {
     expect(keywords[0]).toHaveStructure([...keywordStructure, ...extendedStructure]);
   });
 
-  test('It should get specific product negative keyword details', async () => {
+  test('It should get specific sponsored product negative keyword details', async () => {
     const keyword = await this.client.getNegativeKeyword('sponsoredProducts', global.__SP_NEG_KEYWORD_ID__);
 
     expect(keyword).toHaveStructure(keywordStructure);
   });
 
-  test('It should get specific product negative keyword extended details', async () => {
+  test('It should get specific sponsored product negative keyword extended details', async () => {
     const keyword = await this.client.getNegativeKeyword('sponsoredProducts', global.__SP_NEG_KEYWORD_ID__, true);
 
     expect(keyword).toHaveStructure([...keywordStructure, ...extendedStructure]);
+  });
+
+  test('It should create sponsored product negative keywords', async () => {
+    const response = await this.client.createNegativeKeywords('sponsoredProducts', [
+      {
+        adGroupId: global.__SP_AD_GROUP_ID__,
+        campaignId: global.__SP_CAMPAIGN_ID__,
+        keywordText: 'test',
+        matchType: 'broad',
+        state: 'enabled',
+      },
+    ]);
+
+    expect(response[0]).toHaveStructure(['code', 'keywordId']);
   });
 });
