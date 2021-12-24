@@ -16,6 +16,7 @@ const config = {
     __SP_NEG_KEYWORD_ID__: process.env.SP_NEG_KEYWORD_ID,
     __SB_NEG_KEYWORD_ID__: process.env.SB_NEG_KEYWORD_ID,
     __SP_CAMPAIGN_NEG_KEYWORD_ID__: process.env.SP_CAMPAIGN_NEG_KEYWORD_ID,
+    __SP_TARGET_ID__: process.env.SP_TARGET_ID,
     __OPTIONS__: {
       clientId: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
@@ -24,6 +25,7 @@ const config = {
       maxRetry: 2,
       maxWaitTime: 60000,
       profileId: process.env.PROFILE_ID,
+      sandbox: true,
       // logging: true,
     },
   },

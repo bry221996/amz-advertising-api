@@ -24,13 +24,6 @@ describe('Keywords', () => {
     expect(keywords[0]).toHaveStructure([...keywordStructure, ...extendedStructure]);
   });
 
-  test('It should list sponsored brands keywords', async () => {
-    const keywords = await this.client.listKeywords('sponsoredBrands', { count: 1 });
-    if (!keywords.length) return;
-
-    expect(keywords[0]).toHaveStructure(keywordStructure);
-  });
-
   test('It should get specific product keyword details', async () => {
     const keyword = await this.client.getKeyword('sponsoredProducts', global.__SP_KEYWORD_ID__);
 
@@ -43,14 +36,22 @@ describe('Keywords', () => {
     expect(keyword).toHaveStructure([...keywordStructure, ...extendedStructure]);
   });
 
-  test('It should get specific sponsored brand keyword details', async () => {
-    const keyword = await this.client.getKeyword('sponsoredBrands', global.__SB_KEYWORD_ID__);
-
-    expect(keyword).toHaveStructure(keywordStructure);
-  });
-
   test('It should update keyword details', async () => {
     const response = await this.client.updateKeywords('sponsoredProducts', [{ keywordId: global.__SP_KEYWORD_ID__, state: 'enabled', bid: 20 }]);
+
+    expect(response[0]).toHaveStructure(['code', 'keywordId']);
+  });
+
+  test('It should create specific product keywords', async () => {
+    const response = await this.client.createKeywords('sponsoredProducts', [
+      {
+        adGroupId: global.__SP_AD_GROUP_ID__,
+        campaignId: global.__SP_CAMPAIGN_ID__,
+        keywordText: 'test',
+        matchType: 'broad',
+        state: 'enabled',
+      },
+    ]);
 
     expect(response[0]).toHaveStructure(['code', 'keywordId']);
   });

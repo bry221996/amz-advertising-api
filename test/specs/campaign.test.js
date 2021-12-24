@@ -3,11 +3,6 @@ const AdvertisingClient = require('../../lib/AdvertisingClient');
 const spCampaignStructure = ['campaignId', 'name', 'campaignType', 'targetingType', 'premiumBidAdjustment', 'dailyBudget', 'startDate', 'state', 'bidding'];
 const spCampaignExStructure = [...spCampaignStructure, 'servingStatus', 'creationDate', 'lastUpdatedDate'];
 
-const sbCampaignStructure = ['campaignId', 'name', 'budget', 'bidOptimization', 'adFormat', 'budgetType', 'startDate', 'state', 'servingStatus', 'landingPage'];
-
-const sdCampaignStructure = ['campaignId', 'name', 'budget', 'tactic', 'costType', 'budgetType', 'startDate', 'state', 'deliveryProfile'];
-const sdCampaignExStructure = [...sdCampaignStructure, 'servingStatus', 'creationDate', 'lastUpdatedDate'];
-
 beforeAll(async () => {
   this.client = new AdvertisingClient(global.__OPTIONS__);
 
@@ -29,27 +24,6 @@ describe('Campaigns', () => {
     expect(campaigns[0]).toHaveStructure(spCampaignExStructure);
   });
 
-  test('It should list sponsored brands campaigns', async () => {
-    const campaigns = await this.client.listCampaigns('sponsoredBrands', { count: 1 });
-    if (!campaigns.length) return;
-
-    expect(campaigns[0]).toHaveStructure(sbCampaignStructure);
-  });
-
-  test('It should list sponsored display campaigns', async () => {
-    const campaigns = await this.client.listCampaigns('sponsoredDisplay', { count: 1 });
-    if (!campaigns.length) return;
-
-    expect(campaigns[0]).toHaveStructure(sdCampaignStructure);
-  });
-
-  test('It should list sponsored display campaigns with extended details', async () => {
-    const campaigns = await this.client.listCampaigns('sponsoredDisplay', { count: 1 }, true);
-    if (!campaigns.length) return;
-
-    expect(campaigns[0]).toHaveStructure(sdCampaignExStructure);
-  });
-
   test('It should get specific sponsored product campaign details', async () => {
     const campaign = await this.client.getCampaign('sponsoredProducts', global.__SP_CAMPAIGN_ID__);
 
@@ -62,26 +36,28 @@ describe('Campaigns', () => {
     expect(campaign).toHaveStructure(spCampaignExStructure);
   });
 
-  test('It should get specific brand product campaign details', async () => {
-    const campaign = await this.client.getCampaign('sponsoredBrands', global.__SB_CAMPAIGN_ID__);
+  test('It should create sponsored product campaign', async () => {
+    const response = await this.client.updateCampaigns('sponsoredProducts', [{ campaignId: global.__SP_CAMPAIGN_ID__, state: 'paused', dailyBudget: 20 }]);
 
-    expect(campaign).toHaveStructure(sbCampaignStructure);
+    expect(response[0]).toHaveStructure(['code', 'campaignId']);
   });
 
-  test('It should get specific sponsored product campaign details', async () => {
-    const campaign = await this.client.getCampaign('sponsoredDisplay', global.__SD_CAMPAIGN_ID__);
-
-    expect(campaign).toHaveStructure(sdCampaignStructure);
-  });
-
-  test('It should get specific sponsored product campaign extended details', async () => {
-    const campaign = await this.client.getCampaign('sponsoredDisplay', global.__SD_CAMPAIGN_ID__, true);
-
-    expect(campaign).toHaveStructure(sdCampaignExStructure);
-  });
-
-  test('It should update details', async () => {
-    const response = await this.client.updateCampaigns('sponsoredProducts', [{ campaignId: global.__SP_CAMPAIGN_ID__, state: 'enabled', dailyBudget: 20 }]);
+  test('It should update sponsored product campaign details', async () => {
+    const response = await this.client.createCampaigns('sponsoredProducts', [
+      {
+        name: 'campaign name',
+        tags: {
+          PONumber: 'examplePONumber',
+          accountManager: 'exampleAccountManager',
+        },
+        campaignType: 'sponsoredProducts',
+        targetingType: 'manual',
+        state: 'enabled',
+        dailyBudget: 10,
+        startDate: '20220101',
+        premiumBidAdjustment: true,
+      },
+    ]);
 
     expect(response[0]).toHaveStructure(['code', 'campaignId']);
   });
